@@ -36,9 +36,8 @@ public class PartyController : MonoBehaviour
 
     void Next()
     {
-        if (!_currentCharacter.MoveNext)
+        if (!_currentCharacter.MoveNext())
         {
-            _currentCharacter = _charactersQueue.GetEnumerator().MoveNext();
             _turn++;
         }
     }
