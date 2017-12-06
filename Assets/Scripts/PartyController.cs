@@ -6,13 +6,15 @@ using Utils.Extensions;
 public class PartyController : MonoBehaviour
 {
     private List<CharacterComponent> _charactersQueue;
-    private CharacterComponent _currentCharacter;
+    private List<CharacterComponent>.Enumerator _currentCharacter;
+    private int _turn;
 
     void Awake()
     {
         _charactersQueue = new List<CharacterComponent>();
         GenerateQueue();
-        _currentCharacter = _charactersQueue[0];
+        _currentCharacter = _charactersQueue.GetEnumerator().MoveNext();
+        _turn = 0;
     }
 	
     // Update is called once per frame
@@ -30,6 +32,10 @@ public class PartyController : MonoBehaviour
 
     void Next()
     {
-        
+        if (!_currentCharacter.MoveNext)
+        {
+            _currentCharacter = _charactersQueue.GetEnumerator().MoveNext();
+            _turn++;
+        }
     }
 }
