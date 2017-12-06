@@ -13,7 +13,11 @@ public class PartyController : MonoBehaviour
     {
         _charactersQueue = new List<CharacterComponent>();
         GenerateQueue();
-        _currentCharacter = _charactersQueue.GetEnumerator().MoveNext();
+        _currentCharacter = _charactersQueue.GetEnumerator();
+        if (!_currentCharacter.MoveNext())
+        {
+            Debug.LogError("Queue empty");   
+        }
         _turn = 0;
     }
 	
