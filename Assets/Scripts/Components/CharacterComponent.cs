@@ -2,19 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CharacterType {
-	PLAYABLE,
-	IA_CONTROLLED
+public enum CharacterType
+{
+    PLAYABLE,
+    IA_CONTROLLED
 }
 
-[System.Serializable]
-public class CharacterComponent : MonoBehaviour {
-	[SerializeField] private string name;
-	[SerializeField] private CharacterType _type;
-	[SerializeField] private int _actionPointsByTurn;
-	[SerializeField] private int _actionPointsLeft;
+public class CharacterComponent : MonoBehaviour
+{
+    [SerializeField] private string name;
+    [SerializeField] private CharacterType _type;
 
-	public CharacterType GetType () {
-		return _type;
-	}
+    // Use this for initialization
+    void Start()
+    {
+		
+    }
+	
+    // Update is called once per frame
+    void Update()
+    {
+		
+    }
+
+    public CharacterType GetType()
+    {
+        return _type;
+    }
 }
