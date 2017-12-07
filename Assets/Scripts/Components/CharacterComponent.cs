@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CharacterType
+{
+    PLAYABLE,
+    IA_CONTROLLED
+}
+
 public class CharacterComponent : MonoBehaviour
 {
-    public string name;
+    [SerializeField] private string name;
+    [SerializeField] private CharacterType _type;
 
     // Use this for initialization
     void Start()
@@ -16,5 +23,10 @@ public class CharacterComponent : MonoBehaviour
     void Update()
     {
 		
+    }
+
+    public CharacterType GetType()
+    {
+        return _type;
     }
 }

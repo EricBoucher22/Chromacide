@@ -9,6 +9,8 @@ public class PartyController : MonoBehaviour
     private List<CharacterComponent>.Enumerator _currentCharacter;
     private int _turn;
 
+    [SerializeField] private PlayerController _playerController;
+
     void Awake()
     {
         _charactersQueue = new List<CharacterComponent>();
@@ -34,11 +36,22 @@ public class PartyController : MonoBehaviour
         _charactersQueue.Shuffle();
     }
 
-    void Next()
+    public void Next()
     {
         if (!_currentCharacter.MoveNext())
         {
+            _currentCharacter = _charactersQueue.GetEnumerator();
+            _currentCharacter.MoveNext();
             _turn++;
+        }
+
+        switch (_currentCharacter.Current.GetType())
+        {
+            case CharacterType.PLAYABLE: 
+                _playerController.PlayCharacter(_currentCharacter.Current);
+                break;
+            case CharacterType.IA_CONTROLLED:
+                break;
         }
     }
 }
