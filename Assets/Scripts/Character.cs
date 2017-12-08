@@ -6,19 +6,19 @@ using UnityEngine;
 public class Character
 {
 	#region private variables
-	public string _name;
-	public AffinityColor _color;
-	public Vector2 _initialPosition;
-	public GameObject _model;
-	[HideInInspector] public GameObject _instance;
+	[SerializeField] private string _name;
+	[SerializeField] private AffinityColor _affinityColor;
+	[SerializeField] private Vector2 _initialTile;
+	[SerializeField] private GameObject _model;
+	private GameObject _instance;
 	#endregion
 
 	#region constructors
-	public Character (string name, AffinityColor color, Vector3 initialPosition, GameObject model, GameObject instance)
+	public Character (string name, AffinityColor affinityColor, Vector3 initialTile, GameObject model, GameObject instance)
 	{
-		_color = color;
+		_affinityColor = affinityColor;
 		_name = name;
-		_initialPosition = initialPosition;
+		_initialTile = initialTile;
 		_instance = instance;
 	}
 	#endregion
@@ -30,35 +30,33 @@ public class Character
 		{
 			return _name;
 		}
-
 		set
 		{
 			_name = value;
 		}
 	}
 
-	public AffinityColor Color
+	public AffinityColor AffinityColor
 	{
 		get
 		{
-			return _color;
+			return _affinityColor;
 		}
-
 		set
 		{
-			_color = value;
+			_affinityColor = value;
 		}
 	}
 
-	public Vector3 InitialPosition
+	public Vector3 InitialTile
 	{
 		get
 		{
-			return _initialPosition;
+			return _initialTile;
 		}
 		set
 		{
-			_initialPosition = value;
+			_initialTile = value;
 		}
 	}
 
@@ -90,7 +88,7 @@ public class Character
 	#region public functions
 	public void CreateCharacter(Transform parent)
 	{
-		Instance = GameObject.Instantiate (Model, Map.MapGameObjects[(int) InitialPosition.x, (int) InitialPosition.y].transform.position, Quaternion.identity, parent);
+		Instance = GameObject.Instantiate (Model, Map.MapGameObjects[(int) InitialTile.x, (int) InitialTile.y].transform.position, Quaternion.identity, parent);
 		Instance.name = Name;
 	}
 	#endregion

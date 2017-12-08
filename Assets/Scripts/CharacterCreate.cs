@@ -23,7 +23,7 @@ public class CharacterCreate : MonoBehaviour
 			Characters.Add (cha);
 		}
 
-		Map.ActivateColor (Characters [0].Color);
+		Map.ActivateColor (Characters [0].AffinityColor);
 	}
 
 	// Update is called once per frame
