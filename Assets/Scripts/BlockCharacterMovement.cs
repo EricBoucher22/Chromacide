@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class BlockCharacterMovement : MonoBehaviour
 {
-	Stack oldPath;
+	Stack path;
+	List<Vector3> pathPositions;
 
 	// Use this for initialization
 	void Start ()
 	{
-		oldPath = new Stack ();
+		path = new Stack ();
+		pathPositions = new List<Vector3> ();
 	}
 	
 	// Update is called once per frame
@@ -21,8 +23,9 @@ public class BlockCharacterMovement : MonoBehaviour
 	void OnMouseEnter()
 	{
 		Character active = CharacterCreate.Characters [0];
-		oldPath = AStarFunctions.AStar(MapCreate.PositionReference - MapCreate.PositionReference, active.Instance.transform.position, transform.parent.position - MapCreate.PositionReference, active.Color);
-		foreach(Vector2 arrayPos in oldPath)
+		path = AStarFunctions.AStar(MapCreate.PositionReference - MapCreate.PositionReference, active.Instance.transform.position, transform.parent.position - MapCreate.PositionReference, active.AffinityColor);
+
+		foreach(Vector2 arrayPos in path)
 		{
 			Map.MapGameObjects [(int) arrayPos.x, (int) arrayPos.y].transform.GetChild(0).GetComponent<BlockPropertyChanger> ().HighlightMaterial ();
 		}
@@ -30,9 +33,23 @@ public class BlockCharacterMovement : MonoBehaviour
 
 	void OnMouseExit()
 	{
-		foreach(Vector2 arrayPos in oldPath)
+		foreach(Vector2 arrayPos in path)
 		{
 			Map.MapGameObjects [(int) arrayPos.x, (int) arrayPos.y].transform.GetChild(0).GetComponent<BlockPropertyChanger> ().BaseMaterial ();
 		}
+	}
+
+	void OnMouseDown()
+	{
+		// make the the position list
+		foreach(Vector2 arrayPosition in path)
+		{
+			pathPositions.Add (new Vector3(arrayPosition.y, 0, -arrayPosition.x) + MapCreate.PositionReference);
+		}
+		// call the function of movement
+
+
+		//Debug.Log ("pathPositions=" + pathPositions[pathPositions.Count - 1]);
+		//CharacterCreate.Characters [0].Instance.transform.position = pathPositions [pathPositions.Count - 1];
 	}
 }

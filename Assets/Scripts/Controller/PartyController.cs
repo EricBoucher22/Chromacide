@@ -38,10 +38,16 @@ public class PartyController : MonoBehaviour
 
     public void Next()
     {
+<<<<<<< HEAD:Assets/Scripts/Controller/PartyController.cs
         if (!_currentCharacter.MoveNext())
         {
             _currentCharacter = _charactersQueue.GetEnumerator();
             _currentCharacter.MoveNext();
+=======
+		if (!_currentCharacter.MoveNext())
+        {
+            //_currentCharacter = _charactersQueue.GetEnumerator().MoveNext();
+>>>>>>> Convert array positions to vector 3 positions:Assets/Scripts/PartyController.cs
             _turn++;
         }
 

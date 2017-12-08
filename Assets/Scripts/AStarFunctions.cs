@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AStarFunctions
 {
@@ -59,8 +60,7 @@ public class AStarFunctions
 				if (i_target == i_current && j_target == j_current)
 				{
 					openedList.Clear ();
-					Debug.Log ("item_block=" + item_block.position);
-					DrawToBeforeLine(PositionReference, item_block, ref roadToTake);
+					roadToTake = DrawToBeforeLine(PositionReference, item_block, roadToTake);
 					break;
 				}
 				else
@@ -201,7 +201,7 @@ public class AStarFunctions
 	/// </summary>
 	/// <param name="now">Now.</param>
 	/// <param name="roadToTake">Road to take.</param>
-	static void DrawToBeforeLine(Vector3 PositionReference, block now, ref Stack roadToTake)
+	static Stack DrawToBeforeLine(Vector3 PositionReference, block now, Stack roadToTake)
 	{
 		if (now.previous != null)
 		{
@@ -224,7 +224,11 @@ public class AStarFunctions
 			roadToTake.Push (now.position);
 
 			// recursive, we stop when we the previous is null => we arrived to first block
-			DrawToBeforeLine (PositionReference, now.previous, ref roadToTake);
+			return DrawToBeforeLine (PositionReference, now.previous, roadToTake);
+		}
+		else
+		{
+			return roadToTake;
 		}
 	}
 }
