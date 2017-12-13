@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BlockCharacterMovement : MonoBehaviour {
 	Stack path;
@@ -40,6 +41,10 @@ public class BlockCharacterMovement : MonoBehaviour {
 		}
 		// call the function of movement
 
+
+
+		//Character active = CharacterCreate.Characters [0];
+		//active.Instance.GetComponent<NavMeshAgent> ().destination = pathPositions [0];
 
 		//Debug.Log ("pathPositions=" + pathPositions[pathPositions.Count - 1]);
 		//CharacterCreate.Characters [0].Instance.transform.position = pathPositions [pathPositions.Count - 1];
