@@ -6,6 +6,7 @@ using UnityEngine;
 public class Character
 {
 	#region private variables
+	[SerializeField] private int _maxSquares;
 	[SerializeField] private string _name;
 	[SerializeField] private AffinityColor _affinityColor;
 	[SerializeField] private Vector2 _initialTile;
@@ -24,6 +25,18 @@ public class Character
 	#endregion
 
 	#region getters and setters (properties)
+	public int MaxSquares
+	{
+		get
+		{
+			return _maxSquares;
+		}
+		set
+		{
+			_maxSquares = value;
+		}
+	}
+
 	public string Name
 	{
 		get
