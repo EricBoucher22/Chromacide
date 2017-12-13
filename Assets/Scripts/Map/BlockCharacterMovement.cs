@@ -23,7 +23,7 @@ public class BlockCharacterMovement : MonoBehaviour
 	void OnMouseEnter()
 	{
 		Character active = CharacterCreate.Characters [0];
-		path = AStarFunctions.AStar(MapCreate.PositionReference - MapCreate.PositionReference, active.Instance.transform.position, transform.parent.position - MapCreate.PositionReference, active.AffinityColor);
+		path = AStarFunctions.AStar(MapCreate.PositionReference - MapCreate.PositionReference, active.Instance.transform.position, transform.parent.position - MapCreate.PositionReference, active.AffinityColor, active.MaxSquares);
 
 		foreach(Vector2 arrayPos in path)
 		{
