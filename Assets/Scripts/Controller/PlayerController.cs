@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour, IBlockMouseHandler {
 		// call the function of movement
 		Debug.Log (_controlledCharacter.Name + " " + (_controlledCharacter.GetComponent<NavMeshAgent> () == null));
 		_moveController.MoveTo (
-			_controlledCharacter.GetComponent<NavMeshAgent> (), 
+			_controlledCharacter.gameObject.GetComponent<NavMeshAgent> (), 
 			pathPositions);
 	}
 

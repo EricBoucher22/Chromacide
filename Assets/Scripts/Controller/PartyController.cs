@@ -10,7 +10,7 @@ public class PartyController : MonoBehaviour {
 
 	[SerializeField] private PlayerController _playerController;
 
-	void Awake () {
+	void Start () {
 		_charactersQueue = new List<CharacterComponent> ();
 		GenerateQueue ();
 		_currentCharacter = _charactersQueue.GetEnumerator ();
