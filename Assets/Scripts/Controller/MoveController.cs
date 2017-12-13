@@ -9,7 +9,7 @@ public class MoveController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		_moveToQueue = new Dictionary<GameObject, List<Vector3>> ();
+		_moveToQueue = new Dictionary<NavMeshAgent, List<Vector3>> ();
 	}
 
 	void FixedUpdate () {
@@ -17,7 +17,7 @@ public class MoveController : MonoBehaviour {
 		foreach (KeyValuePair<NavMeshAgent, List<Vector3>> moveTo in _moveToQueue) {
 			NavMeshAgent agent = moveTo.Key;
 			if (!agent.pathPending && !agent.hasPath) {
-				agent.destination = moveTo.Value [0];
+				agent.SetDestination (moveTo.Value [0]);
 				moveTo.Value.RemoveAt (0);
 				if (moveTo.Value.Count == 0) {
 					agents_to_remove.Add (agent);
@@ -30,7 +30,7 @@ public class MoveController : MonoBehaviour {
 		}
 	}
 
-	public void MoveTo (GameObject toMove, List<Vector3> positions) {
+	public void MoveTo (NavMeshAgent toMove, List<Vector3> positions) {
 		if (_moveToQueue.ContainsKey (toMove)) {
 			_moveToQueue [toMove].AddRange (positions);
 		} else {
