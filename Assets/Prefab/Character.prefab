@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4910756258415134}
   - component: {fileID: 114619323708756060}
   - component: {fileID: 195817057937401278}
+  - component: {fileID: 114547667886782246}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -83,6 +84,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -98,6 +100,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -113,6 +116,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1909864397852696}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114547667886782246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1230117264068292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03564e81d5ef4873836c4ed22ca859c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: black
+  _type: 0
+  _actionPointsByTurn: 0
+  _actionPointsLeft: 0
+  _maxSquares: 4
+  _affinityColor: 0
 --- !u!114 &114619323708756060
 MonoBehaviour:
   m_ObjectHideFlags: 1
