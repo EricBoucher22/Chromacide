@@ -9,7 +9,7 @@ public enum CharacterType {
 
 [System.Serializable]
 public class CharacterComponent : MonoBehaviour {
-	[SerializeField] private string name;
+	[SerializeField] private string _name;
 	[SerializeField] private CharacterType _type;
 	[SerializeField] private int _actionPointsByTurn;
 	[SerializeField] private int _actionPointsLeft;
