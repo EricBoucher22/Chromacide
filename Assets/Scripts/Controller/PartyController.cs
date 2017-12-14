@@ -9,6 +9,7 @@ public class PartyController : MonoBehaviour {
 	private int _turn;
 
 	[SerializeField] private PlayerController _playerController;
+	[SerializeField] private IAController _iaController;
 
 	void Start () {
 		_charactersQueue = new List<CharacterComponent> ();
@@ -46,6 +47,7 @@ public class PartyController : MonoBehaviour {
 			_playerController.PlayCharacter (_currentCharacter.Current);
 			break;
 		case CharacterType.IA_CONTROLLED:
+			_iaController.PlayCharacter (_currentCharacter.Current);
 			break;
 		}
 	}
