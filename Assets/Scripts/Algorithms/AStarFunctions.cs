@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AStarFunctions
 {
@@ -18,7 +19,7 @@ public class AStarFunctions
 	/// <returns>The star.</returns>
 	/// <param name="Position">Position of the character</param>
 	/// <param name="TargetPosition">Position of the target that the character must reach</param>
-	public static Stack AStar(Vector3 PositionReference, Vector3 Position, Vector3 TargetPosition, AffinityColor color)
+	public static Stack AStar(Vector3 PositionReference, Vector3 Position, Vector3 TargetPosition, AffinityColor color, int maxSquares)
 	{
 		Stack roadToTake = new Stack();
 
@@ -59,8 +60,7 @@ public class AStarFunctions
 				if (i_target == i_current && j_target == j_current)
 				{
 					openedList.Clear ();
-					Debug.Log ("item_block=" + item_block.position);
-					DrawToBeforeLine(PositionReference, item_block, ref roadToTake);
+					roadToTake = DrawToBeforeLine(PositionReference, item_block, roadToTake, maxSquares);
 					break;
 				}
 				else
@@ -201,7 +201,7 @@ public class AStarFunctions
 	/// </summary>
 	/// <param name="now">Now.</param>
 	/// <param name="roadToTake">Road to take.</param>
-	static void DrawToBeforeLine(Vector3 PositionReference, block now, ref Stack roadToTake)
+	static Stack DrawToBeforeLine(Vector3 PositionReference, block now, Stack roadToTake, int maxSquares)
 	{
 		if (now.previous != null)
 		{
@@ -221,10 +221,21 @@ public class AStarFunctions
 				10000
 			);*/
 			// push the road to take
-			roadToTake.Push (now.position);
+			if (roadToTake.Count < maxSquares)
+			{
+				roadToTake.Push (now.position);
 
-			// recursive, we stop when we the previous is null => we arrived to first block
-			DrawToBeforeLine (PositionReference, now.previous, ref roadToTake);
+				// recursive, we stop when we the previous is null => we arrived to first block
+				return DrawToBeforeLine (PositionReference, now.previous, roadToTake, maxSquares);
+			}
+			else
+			{
+				return new Stack ();
+			}
+		}
+		else
+		{
+			return roadToTake;
 		}
 	}
 }
