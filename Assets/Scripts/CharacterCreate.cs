@@ -9,11 +9,8 @@ public class CharacterCreate : MonoBehaviour {
 
 	public static List<Character> Characters = new List<Character> ();
 
-	void Awake () {
-	}
-
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		foreach (Character cha in player) {
 			cha.CreateCharacter (transform);
 			Characters.Add (cha);
