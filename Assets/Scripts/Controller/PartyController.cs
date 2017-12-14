@@ -27,7 +27,7 @@ public class PartyController : MonoBehaviour {
 	}
 
 	private void GenerateQueue () {
-		CharacterComponent[] characters = Resources.FindObjectsOfTypeAll<CharacterComponent> ();
+		CharacterComponent[] characters = FindObjectsOfType (typeof(CharacterComponent)) as CharacterComponent[];
 		_charactersQueue.AddRange (characters);
 		_charactersQueue.Shuffle ();
 	}
@@ -38,6 +38,8 @@ public class PartyController : MonoBehaviour {
 			_currentCharacter.MoveNext ();
 			_turn++;
 		}
+
+		Debug.Log (_currentCharacter.Current);
 
 		switch (_currentCharacter.Current.GetType ()) {
 		case CharacterType.PLAYABLE: 
