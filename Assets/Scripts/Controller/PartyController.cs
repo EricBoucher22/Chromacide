@@ -32,7 +32,6 @@ public class PartyController : MonoBehaviour {
 		_charactersQueue.Shuffle ();
 	}
 
-
 	public void Next () {
 		if (!_currentCharacter.MoveNext ()) {
 			_currentCharacter = _charactersQueue.GetEnumerator ();

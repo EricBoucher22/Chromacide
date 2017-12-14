@@ -61,5 +61,4 @@ public class PlayerController : MonoBehaviour, IBlockMouseHandler {
 			_controlledCharacter.gameObject.GetComponent<NavMeshAgent> (), 
 			pathPositions);
 	}
-
 }
