@@ -8,6 +8,9 @@ public class BlockPropertyChanger : MonoBehaviour
 
 	[HideInInspector] public Material mat;
 	[HideInInspector] public Material highlightedMat;
+	[HideInInspector] public Material transparentMat;
+
+	private bool transparent;
 
 	void Awake()
 	{
@@ -26,15 +29,33 @@ public class BlockPropertyChanger : MonoBehaviour
 		
 	}
 
+	void OnTriggerEnter(Collider c)
+	{
+		rend.material = transparentMat;
+		transparent = true;
+	}
+
+	void OnTriggerExit(Collider c)
+	{
+		rend.material = mat;
+		transparent = false;
+	}
+
 	// Use this for initialization
 	public void BaseMaterial ()
 	{
-		rend.material = mat;
+		if (!transparent)
+		{
+			rend.material = mat;
+		}
 	}
 
 	// Use this for initialization
 	public void HighlightMaterial ()
 	{
-		rend.material = highlightedMat;
+		if (!transparent)
+		{
+			rend.material = highlightedMat;
+		}
 	}
 }

@@ -18,6 +18,26 @@ public class CharacterComponent : MonoBehaviour {
 
 	private int _playedSquares;
 
+	void Awake()
+	{
+		Material m = transform.GetChild (0).GetComponent<Renderer> ().material;
+		switch (_affinityColor)
+		{
+			case AffinityColor.Black:
+				m.color = Color.black;
+				break;
+			case AffinityColor.Red:
+				m.color = new Color(1, 0.3f, 0.3f);
+				break;
+			case AffinityColor.Green:
+				m.color = new Color(0.3f, 1, 0.3f);
+				break;
+			case AffinityColor.Blue:
+				m.color = new Color(0.3f, 0.3f, 1);
+				break;
+		}
+	}
+
 	public CharacterType GetType () {
 		return _type;
 	}
