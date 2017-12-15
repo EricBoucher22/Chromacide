@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class MoveController : MonoBehaviour {
 	[SerializeField] private float _nominalSpeed;
 	private Dictionary<NavMeshAgent, List<Vector3>> _moveToQueue;
+	private bool _inputFrozen;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,7 @@ public class MoveController : MonoBehaviour {
 		List<NavMeshAgent> agents_to_remove = new List<NavMeshAgent> ();
 		foreach (KeyValuePair<NavMeshAgent, List<Vector3>> moveTo in _moveToQueue) {
 			NavMeshAgent agent = moveTo.Key;
-			if (!agent.pathPending && !agent.hasPath) {
+			if (!agent.pathPending && !agent.hasPath && moveTo.Value.Count > 0) {
 				agent.SetDestination (moveTo.Value [0]);
 				moveTo.Value.RemoveAt (0);
 				if (moveTo.Value.Count == 0) {
@@ -35,6 +36,14 @@ public class MoveController : MonoBehaviour {
 			_moveToQueue [toMove].AddRange (positions);
 		} else {
 			_moveToQueue.Add (toMove, positions);
+		}
+	}
+
+	public bool IsInMovementQueue (NavMeshAgent toMove) {
+		if (_moveToQueue.ContainsKey (toMove)) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

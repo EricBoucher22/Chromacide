@@ -16,8 +16,22 @@ public class CharacterComponent : MonoBehaviour {
 	[SerializeField] private int _maxSquares;
 	[SerializeField] private AffinityColor _affinityColor;
 
+	private int _playedSquares;
+
 	public CharacterType GetType () {
 		return _type;
+	}
+
+	public CharacterType Type
+	{
+		get
+		{
+			return _type;
+		}
+		set
+		{
+			_type = value;
+		}
 	}
 
 	public int MaxSquares {
@@ -44,6 +58,18 @@ public class CharacterComponent : MonoBehaviour {
 		}
 		set {
 			_affinityColor = value;
+		}
+	}
+
+	public int PlayedSquares
+	{
+		get
+		{
+			return _playedSquares;
+		}
+		set
+		{
+			_playedSquares = value;
 		}
 	}
 }

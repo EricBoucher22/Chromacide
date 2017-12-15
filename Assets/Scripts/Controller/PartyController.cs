@@ -26,6 +26,11 @@ public class PartyController : MonoBehaviour {
 		
 	}
 
+	public List<CharacterComponent> GetCharactersQueue ()
+	{
+		return _charactersQueue;
+	}
+
 	private void GenerateQueue () {
 		CharacterComponent[] characters = FindObjectsOfType (typeof(CharacterComponent)) as CharacterComponent[];
 		_charactersQueue.AddRange (characters);
@@ -34,6 +39,7 @@ public class PartyController : MonoBehaviour {
 
 	public void Next () {
 		if (!_currentCharacter.MoveNext ()) {
+			_currentCharacter.Current.PlayedSquares = 0;
 			_currentCharacter = _charactersQueue.GetEnumerator ();
 			_currentCharacter.MoveNext ();
 			_turn++;

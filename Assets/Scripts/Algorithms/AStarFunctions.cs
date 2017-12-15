@@ -19,9 +19,28 @@ public class AStarFunctions
 	/// <returns>The star.</returns>
 	/// <param name="Position">Position of the character</param>
 	/// <param name="TargetPosition">Position of the target that the character must reach</param>
-	public static Stack AStar(Vector3 PositionReference, Vector3 Position, Vector3 TargetPosition, AffinityColor color, int maxSquares)
+	public static Stack AStar(
+		Vector3 PositionReference, 
+		Vector3 Position, 
+		Vector3 TargetPosition, 
+		AffinityColor color, 
+		int maxSquares,
+		List<CharacterComponent> characterQueue)
 	{
 		Stack roadToTake = new Stack();
+
+		Position -= PositionReference;
+		TargetPosition -= PositionReference;
+
+		List<Vector2> arrayPositionCharacters = new List<Vector2> ();
+
+		foreach (CharacterComponent character in characterQueue)
+		{
+			int x_char = -(int) (character.transform.position).z;
+			int y_char = +(int) (character.transform.position).x;
+
+			arrayPositionCharacters.Add (new Vector2 (x_char, y_char));
+		}
 
 		ArrayList closedList = new ArrayList ();
 		ArrayList openedList = new ArrayList ();
@@ -68,7 +87,7 @@ public class AStarFunctions
 					openedList.Remove (item_block);
 					closedList.Add (item_block);
 
-					GetSurroundingBlocks (PositionReference, TargetPosition, i_current, j_current, ref openedList, closedList, item_block, color);
+					GetSurroundingBlocks (PositionReference, TargetPosition, i_current, j_current, ref openedList, closedList, item_block, color, arrayPositionCharacters);
 				}
 			}
 		}
@@ -84,7 +103,16 @@ public class AStarFunctions
 	/// <param name="openedList">Opened list.</param>
 	/// <param name="closedList">Closed list.</param>
 	/// <param name="item_block">Item block.</param>
-	static void GetSurroundingBlocks(Vector3 PositionReference, Vector3 TargetPosition, int i_current, int j_current, ref ArrayList openedList, ArrayList closedList, block item_block, AffinityColor color)
+	static void GetSurroundingBlocks(
+		Vector3 PositionReference, 
+		Vector3 TargetPosition, 
+		int i_current, 
+		int j_current, 
+		ref ArrayList openedList, 
+		ArrayList closedList, 
+		block item_block, 
+		AffinityColor color, 
+		List<Vector2> arrayPositionCharacters)
 	{
 		int[] i_directions = new int[4];
 		int[] j_directions = new int[4];
@@ -104,8 +132,19 @@ public class AStarFunctions
 			int j_test = j_directions [k];
 			if (i_test >= 0 && i_test < Map.MapArray.GetLength (0) && j_test >= 0 && j_test < Map.MapArray.GetLength (1))
 			{
+				bool testPosExists = false;
+				foreach (Vector2 arrayPos in arrayPositionCharacters)
+				{
+					if (i_test == arrayPos.x && j_test == arrayPos.y)
+					{
+						testPosExists = true;
+						break;
+					}
+				}
 				int tile = (int)Map.MapArray [i_test, j_test].Type;
-				if (/*Map.TileCost [tile] != 0 && */Map.MapArray [i_test, j_test].Colors.IndexOf (color) >= 0)
+				if (/*Map.TileCost [tile] != 0 && */
+					Map.MapArray [i_test, j_test].Colors.IndexOf (color) >= 0 &&
+					!testPosExists)
 				{
 					// if block is in opened list
 					bool inside_open = false;

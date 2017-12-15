@@ -11,13 +11,12 @@ public class CharacterCreate : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		foreach (Character cha in player) {
+		/*foreach (Character cha in player) {
 			cha.CreateCharacter (transform);
 			Characters.Add (cha);
 		}
 
-		Map.ActivateColor (Characters [0].AffinityColor);
-
+		Map.ActivateColor (Characters [0].AffinityColor);*/
 	}
 
 	// Update is called once per frame
