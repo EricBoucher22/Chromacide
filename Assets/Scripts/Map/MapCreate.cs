@@ -12,6 +12,7 @@ public class MapCreate : MonoBehaviour
 	[SerializeField] private GameObject hole = null;
 	[SerializeField] private Material[] materials = null;
 	[SerializeField] private Material[] highlightedMaterials = null;
+	[SerializeField] private Material[] transparentMaterials = null;
 	[SerializeField] private Material neutralMaterial = null;
 
 	public static Vector3 PositionReference;
@@ -21,6 +22,7 @@ public class MapCreate : MonoBehaviour
 		Map.NeutralMaterial = neutralMaterial;
 		Map.Materials = materials;
 		Map.HighlightedMaterials = highlightedMaterials;
+		Map.TransparentMaterials = transparentMaterials;
 
 		Map.CreateMapArray ();
 		Map.CreateMapTiles (ground, wall, half_wall, hole, transform.position, transform);

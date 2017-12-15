@@ -24,6 +24,7 @@ public class Map
 	public static Material NeutralMaterial;
 	public static Material[] Materials;
 	public static Material[] HighlightedMaterials;
+	public static Material[] TransparentMaterials;
 
 	public static int[,] MapTypeTemp =
 	{
@@ -145,6 +146,7 @@ public class Map
 				blockCharacterMovement.enabled = false;
 				blockPropertyChanger.mat = NeutralMaterial;
 				blockPropertyChanger.highlightedMat = NeutralMaterial;
+				blockPropertyChanger.transparentMat = NeutralMaterial;
 				foreach (AffinityColor c in MapArray [i, j].Colors)
 				{
 					int index_color = (int) c;
@@ -153,6 +155,7 @@ public class Map
 						blockCharacterMovement.enabled = true;
 						blockPropertyChanger.mat = Materials [index_color];
 						blockPropertyChanger.highlightedMat = HighlightedMaterials [index_color];
+						blockPropertyChanger.transparentMat = TransparentMaterials [index_color];
 					}
 				}
 				blockPropertyChanger.BaseMaterial ();

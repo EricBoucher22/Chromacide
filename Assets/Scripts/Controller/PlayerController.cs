@@ -45,7 +45,8 @@ public class PlayerController : MonoBehaviour, IBlockMouseHandler
 		// while perfoming action, the input is frozen.
 		if (_inputFrozen && 
 			!_moveController.IsInMovementQueue (_currentAgent) &&
-			_currentAgent.pathStatus==NavMeshPathStatus.PathComplete && _currentAgent.remainingDistance == 0)
+			_currentAgent.pathStatus==NavMeshPathStatus.PathComplete && 
+			_currentAgent.remainingDistance == 0)
 		{
 			counter++;
 			if (counter == 3)
