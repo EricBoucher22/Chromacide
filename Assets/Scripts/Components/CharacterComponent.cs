@@ -22,14 +22,11 @@ public class CharacterComponent : MonoBehaviour {
 		return _type;
 	}
 
-	public CharacterType Type
-	{
-		get
-		{
+	public CharacterType CharacterType {
+		get {
 			return _type;
 		}
-		set
-		{
+		set {
 			_type = value;
 		}
 	}
@@ -61,14 +58,11 @@ public class CharacterComponent : MonoBehaviour {
 		}
 	}
 
-	public int PlayedSquares
-	{
-		get
-		{
+	public int PlayedSquares {
+		get {
 			return _playedSquares;
 		}
-		set
-		{
+		set {
 			_playedSquares = value;
 		}
 	}
