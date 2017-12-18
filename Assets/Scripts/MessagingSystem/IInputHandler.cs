@@ -4,5 +4,5 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public interface IInputHandler : IEventSystemHandler {
-	void RotateCamera (int angle);
+	void InputSend (string method, object param);
 }
