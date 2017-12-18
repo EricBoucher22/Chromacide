@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveController : MonoBehaviour {
+public enum MovementType{Grid, Free};
+
+public class MoveController : MonoBehaviour, IInputHandler {
 	[SerializeField] private float _nominalSpeed;
+
+	public MovementType _movementType;
+
 	private Dictionary<NavMeshAgent, List<Vector3>> _moveToQueue;
 	private bool _inputFrozen;
 
@@ -44,6 +49,15 @@ public class MoveController : MonoBehaviour {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public void InputSend(string method, object param)
+	{
+		Debug.Log ("movement = " + (MovementType) param);
+		if (method.Equals ("ChangeMovementType"))
+		{
+			_movementType = (MovementType) param;
 		}
 	}
 }

@@ -20,11 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4182918534119280}
   - component: {fileID: 33508498068642360}
-  - component: {fileID: 65186392224580108}
   - component: {fileID: 23965274139885318}
   - component: {fileID: 114603628394667100}
   - component: {fileID: 114425648378242282}
   - component: {fileID: 65720384566184882}
+  - component: {fileID: 208828039651182986}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -113,18 +113,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1481875656461304}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65186392224580108
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1481875656461304}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65720384566184882
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -161,3 +149,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat: {fileID: 0}
   highlightedMat: {fileID: 0}
+  transparentMat: {fileID: 0}
+--- !u!208 &208828039651182986
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481875656461304}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

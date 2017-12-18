@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.AI;
 
 public enum CellType { Ground, Wall, Half_Wall, Hole };
 
@@ -142,7 +143,12 @@ public class Map
 			{
 				BlockCharacterMovement blockCharacterMovement = MapGameObjects [i, j].GetComponentInChildren<BlockCharacterMovement> ();
 				BlockPropertyChanger blockPropertyChanger = MapGameObjects [i, j].GetComponentInChildren<BlockPropertyChanger> ();
+				NavMeshObstacle navMeshObstacle = MapGameObjects [i, j].GetComponentInChildren<NavMeshObstacle> ();
 
+				if (navMeshObstacle != null)
+				{
+					navMeshObstacle.enabled = true;
+				}
 				blockCharacterMovement.enabled = false;
 				blockPropertyChanger.mat = NeutralMaterial;
 				blockPropertyChanger.highlightedMat = NeutralMaterial;
@@ -152,6 +158,10 @@ public class Map
 					int index_color = (int) c;
 					if (c == color)
 					{
+						if (navMeshObstacle != null)
+						{
+							navMeshObstacle.enabled = false;
+						}
 						blockCharacterMovement.enabled = true;
 						blockPropertyChanger.mat = Materials [index_color];
 						blockPropertyChanger.highlightedMat = HighlightedMaterials [index_color];

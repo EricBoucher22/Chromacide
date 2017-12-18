@@ -73,13 +73,36 @@ public class PlayerController : MonoBehaviour, IBlockMouseHandler
 	{
 		if (!_inputFrozen)
 		{
-			_path = AStarFunctions.AStar (
-				MapCreate.PositionReference, 
-				_controlledCharacter.transform.position, 
-				block_position, 
-				_controlledCharacter.AffinityColor, 
-				_controlledCharacter.MaxSquares - _controlledCharacter.PlayedSquares,
-				_partyController.GetCharactersQueue());
+			if (_moveController._movementType == MovementType.Grid)
+			{
+				_path = AStarFunctions.AStar (
+					MapCreate.PositionReference, 
+					_controlledCharacter.transform.position, 
+					block_position, 
+					_controlledCharacter.AffinityColor, 
+					_controlledCharacter.MaxSquares - _controlledCharacter.PlayedSquares,
+					_partyController.GetCharactersQueue ());
+			}
+			else if (_moveController._movementType == MovementType.Free)
+			{
+				_path = new Stack ();
+				bool occupied = false;
+				foreach (CharacterComponent comp in _partyController.GetCharactersQueue ())
+				{
+					Vector3 vect_comp = comp.transform.position;
+					if (Vector3.Distance(vect_comp, block_position) < 0.1f)
+					{
+						occupied = true;
+						break;
+					}
+				}
+				if (!occupied)
+				{
+					Vector3 vec_block_pos = block_position - MapCreate.PositionReference;
+					_path.Push (new Vector2 (-vec_block_pos.z, vec_block_pos.x));
+				}
+			}
+
 			foreach (Vector2 arrayPos in _path)
 			{
 				Map.MapGameObjects [(int)arrayPos.x, (int)arrayPos.y].transform.GetChild (0).GetComponent<BlockPropertyChanger> ().HighlightMaterial ();

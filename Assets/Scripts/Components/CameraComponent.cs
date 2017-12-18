@@ -16,8 +16,11 @@ public class CameraComponent : MonoBehaviour, IInputHandler
 		
 	}
 
-	public void RotateCamera(int angle)
+	public void InputSend(string method, object param)
 	{
-		transform.Rotate (new Vector3 (0, angle, 0));
+		if (method.Equals ("RotateCamera"))
+		{
+			transform.Rotate (new Vector3 (0, (int) param, 0));
+		}
 	}
 }
