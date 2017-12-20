@@ -46,7 +46,7 @@ public class PartyController : MonoBehaviour {
 
 		Debug.Log (_currentCharacter.Current);
 
-		switch (_currentCharacter.Current.GetType ()) {
+		switch (_currentCharacter.Current.Type) {
 		case CharacterType.PLAYABLE: 
 			_playerController.PlayCharacter (_currentCharacter.Current);
 			break;

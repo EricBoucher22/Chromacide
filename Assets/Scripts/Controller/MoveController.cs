@@ -24,6 +24,7 @@ public class MoveController : MonoBehaviour, IInputHandler {
 			NavMeshAgent agent = moveTo.Key;
 			if (!agent.pathPending && !agent.hasPath && moveTo.Value.Count > 0) {
 				agent.SetDestination (moveTo.Value [0]);
+				agent.GetComponent<CharacterComponent> ().CharacterAnimation (true);
 				moveTo.Value.RemoveAt (0);
 				if (moveTo.Value.Count == 0) {
 					agents_to_remove.Add (agent);

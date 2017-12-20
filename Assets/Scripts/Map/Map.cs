@@ -145,19 +145,13 @@ public class Map
 				BlockPropertyChanger blockPropertyChanger = MapGameObjects [i, j].GetComponentInChildren<BlockPropertyChanger> ();
 				NavMeshObstacle navMeshObstacle = MapGameObjects [i, j].GetComponentInChildren<NavMeshObstacle> ();
 
-				if (navMeshObstacle != null)
-				{
-					navMeshObstacle.enabled = true;
-				}
-				blockCharacterMovement.enabled = false;
-				blockPropertyChanger.mat = NeutralMaterial;
-				blockPropertyChanger.highlightedMat = NeutralMaterial;
-				blockPropertyChanger.transparentMat = NeutralMaterial;
+				bool color_match = false;
 				foreach (AffinityColor c in MapArray [i, j].Colors)
 				{
 					int index_color = (int) c;
 					if (c == color)
 					{
+						color_match = true;
 						if (navMeshObstacle != null)
 						{
 							navMeshObstacle.enabled = false;
@@ -167,6 +161,17 @@ public class Map
 						blockPropertyChanger.highlightedMat = HighlightedMaterials [index_color];
 						blockPropertyChanger.transparentMat = TransparentMaterials [index_color];
 					}
+				}
+				if (!color_match)
+				{
+					if (navMeshObstacle != null)
+					{
+						navMeshObstacle.enabled = true;
+					}
+					blockCharacterMovement.enabled = false;
+					blockPropertyChanger.mat = NeutralMaterial;
+					blockPropertyChanger.highlightedMat = NeutralMaterial;
+					blockPropertyChanger.transparentMat = NeutralMaterial;
 				}
 				blockPropertyChanger.BaseMaterial ();
 			}

@@ -10,7 +10,7 @@ public class BlockPropertyChanger : MonoBehaviour
 	[HideInInspector] public Material highlightedMat;
 	[HideInInspector] public Material transparentMat;
 
-	private bool transparent;
+	[HideInInspector] public bool transparent;
 
 	void Awake()
 	{
@@ -31,6 +31,7 @@ public class BlockPropertyChanger : MonoBehaviour
 
 	void OnTriggerEnter(Collider c)
 	{
+		Debug.Log ("Entered");
 		rend.material = transparentMat;
 		transparent = true;
 	}

@@ -20,13 +20,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4709636468580224}
   - component: {fileID: 33627503564550622}
-  - component: {fileID: 65635178542890468}
   - component: {fileID: 23486521589073986}
   - component: {fileID: 114208468950064934}
   - component: {fileID: 114911574416643164}
+  - component: {fileID: 65635178542890468}
   - component: {fileID: 208186311445657784}
   m_Layer: 0
-  m_Name: Sol
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1043135251131282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4104857358080430}
@@ -120,7 +120,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1043135251131282}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -150,6 +150,7 @@ MonoBehaviour:
   mat: {fileID: 0}
   highlightedMat: {fileID: 0}
   transparentMat: {fileID: 0}
+  transparent: 0
 --- !u!208 &208186311445657784
 NavMeshObstacle:
   m_ObjectHideFlags: 1

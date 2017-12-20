@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour, IBlockMouseHandler
 				StopHighlightPath ();
 				_path.Clear ();
 				counter = 0;
+
+				_controlledCharacter.CharacterAnimation (false);
 			}
 		}
 	}
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour, IBlockMouseHandler
 	{
 		if (_controlledCharacter != null)
 		{
+			_controlledCharacter.GetComponent<NavMeshAgent> ().enabled = false;
 			_controlledCharacter.PlayedSquares = 0;
 		}
 		_controlledCharacter = character;
@@ -139,8 +142,13 @@ public class PlayerController : MonoBehaviour, IBlockMouseHandler
 				// call the function of movement
 				Debug.Log (_controlledCharacter.Name + " " + (_controlledCharacter.GetComponent<NavMeshAgent> () == null));
 
+				_controlledCharacter.CharacterAnimation (true);
+
+				NavMeshAgent agent = _controlledCharacter.GetComponent<NavMeshAgent> ();
+				agent.enabled = true;
+
 				_moveController.MoveTo (
-					_controlledCharacter.gameObject.GetComponent<NavMeshAgent> (), 
+					agent, 
 					pathPositions);
 				_inputFrozen = true;
 			}

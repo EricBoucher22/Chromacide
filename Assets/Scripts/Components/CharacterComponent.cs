@@ -17,29 +17,47 @@ public class CharacterComponent : MonoBehaviour {
 	[SerializeField] private AffinityColor _affinityColor;
 
 	private int _playedSquares;
+	private Animator _anim;
 
 	void Awake()
 	{
-		Material m = transform.GetChild (0).GetComponent<Renderer> ().material;
-		switch (_affinityColor)
+		_anim = transform.GetComponentInChildren<Animator> ();
+
+		Renderer[] ColorChangable = GetComponentsInChildren<Renderer> ();
+
+		foreach (Renderer g in ColorChangable)
 		{
-			case AffinityColor.Black:
-				m.color = Color.black;
-				break;
-			case AffinityColor.Red:
-				m.color = new Color(1, 0.3f, 0.3f);
-				break;
-			case AffinityColor.Green:
-				m.color = new Color(0.3f, 1, 0.3f);
-				break;
-			case AffinityColor.Blue:
-				m.color = new Color(0.3f, 0.3f, 1);
-				break;
+			if (g.tag.Equals ("ColorChangers"))
+			{
+				Material[] mats = g.materials;
+				foreach (Material m in mats)
+				{
+					switch (_affinityColor)
+					{
+						case AffinityColor.Black:
+							m.color = new Color (0.3f, 0.3f, 0.3f);
+							break;
+						case AffinityColor.Red:
+							m.color = new Color (1, 0.3f, 0.3f);
+							break;
+						case AffinityColor.Green:
+							m.color = new Color (0.3f, 1, 0.3f);
+							break;
+						case AffinityColor.Blue:
+							m.color = new Color (0.3f, 0.3f, 1);
+							break;
+					}
+				}
+			}
 		}
 	}
 
-	public CharacterType GetType () {
-		return _type;
+	public void CharacterAnimation (bool walk)
+	{
+		if (_anim.GetBool ("Walk") != walk)
+		{
+			_anim.SetBool ("Walk", walk);
+		}
 	}
 
 	public CharacterType Type
