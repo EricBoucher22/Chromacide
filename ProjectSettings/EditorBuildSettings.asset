@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/Menu Chromacide.unity
+    guid: e4a0b186414f2dc44b0018c5eef75f0d
+  - enabled: 1
+    path: Assets/Scene/SceneAutoTest.unity
+    guid: d9bb491a07cce4243997fd8c2d962aa8

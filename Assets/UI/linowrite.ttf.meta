@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 3453ab6847e6f234084d9929be13f31c
+timeCreated: 1512134895
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Linowrite
+  fontNames:
+  - Linowrite
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

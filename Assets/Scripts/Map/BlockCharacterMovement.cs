@@ -8,24 +8,38 @@ public class BlockCharacterMovement : MonoBehaviour {
 
 	private GameObject _gameManager;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		_gameManager = GameObject.Find ("GameController");
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		
 	}
 
-	void OnMouseEnter () {
-		ExecuteEvents.Execute<IBlockMouseHandler> (_gameManager, null, (x, y) => x.HighlightPath (transform.position));
+	void OnMouseEnter ()
+	{
+		if (enabled)
+		{
+			ExecuteEvents.Execute<IBlockMouseHandler> (_gameManager, null, (x, y) => x.HighlightPath (transform.position));
+		}
 	}
 
-	void OnMouseExit () {
-		ExecuteEvents.Execute<IBlockMouseHandler> (_gameManager, null, (x, y) => x.StopHighlightPath ());
+	void OnMouseExit ()
+	{
+		if (enabled)
+		{
+			ExecuteEvents.Execute<IBlockMouseHandler> (_gameManager, null, (x, y) => x.StopHighlightPath ());
+		}
 	}
 
-	void OnMouseDown () {
-		ExecuteEvents.Execute<IBlockMouseHandler> (_gameManager, null, (x, y) => x.MoveTo (transform.position));
+	void OnMouseDown ()
+	{
+		if (enabled)
+		{
+			ExecuteEvents.Execute<IBlockMouseHandler> (_gameManager, null, (x, y) => x.MoveTo (transform.position));
+		}
 	}
 }
